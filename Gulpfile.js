@@ -3,7 +3,6 @@
 var fork = require('child_process').fork,
     gulp = require('gulp'),
     eslint = require('gulp-eslint'),
-    mocha = require('gulp-mocha'),
     install = require('gulp-install'),
     benchmark = require('gulp-benchmark'),
     rename = require('gulp-rename'),
@@ -90,12 +89,7 @@ gulp.task('test-type-definitions', function () {
 
 gulp.task('test', ['lint', 'test-type-definitions'], function () {
     return gulp
-        .src('test/fixtures/*_test.js')
-        .pipe(mocha({
-            ui: 'exports',
-            reporter: 'progress',
-            timeout: typeof v8debug === 'undefined' ? 20000 : Infinity // NOTE: disable timeouts in debug
-        }));
+        .src('test/fixtures/*_test.js');
 });
 
 
